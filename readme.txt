@@ -4,7 +4,8 @@ Taking Control of WCF
  - Demonstrate alternative client models that do not use "Add Service Reference"
  - Explain the Request/Response model, and the power of convention in architecture
  - Describe how SOLID principles apply to WCF services
- - Decouple business logic from WCF services, making services proxies to business logic rather than containers of business logic
+ - Decouple business logic from WCF services
+   - Services are proxies to business logic, not owners of business logic
  - Introduce extension points in WCF
  - Implement service extension while leveraging the decorator pattern
  - Simplify WCF experience between an application and a set of services
