@@ -1,8 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
-using Contracts.Authentication;
-using Contracts.Portal;
+﻿using System.Web.Mvc;
 using System.Linq;
+using Web.Client.Authentication;
 
 namespace Web.Client.Controllers
 {
@@ -21,7 +19,12 @@ namespace Web.Client.Controllers
             SyncTempDataWithModelState();
 
             // Get the collection of users in the database
-            var response = AuthenticationClient.Execute(x => x.GetAllUsers(new GetUsersRequest()));
+            GetUsersResponse response;
+
+            using (var client = new AuthenticationServiceClient())
+            {
+                response = client.GetAllUsers(new GetUsersRequest());
+            }
 
             // Return the index view with the users
             return View(response.Users);
@@ -43,7 +46,12 @@ namespace Web.Client.Controllers
             };
 
             // Call the service and get a response
-            var response = AuthenticationClient.Execute(x => x.AuthenticateUser(request));
+            AuthenticateResponse response;
+
+            using (var client = new AuthenticationServiceClient())
+            {
+                response = client.AuthenticateUser(request);
+            }
 
             // If not authenticated, make a note for model state
             if (!response.IsAuthenticated)

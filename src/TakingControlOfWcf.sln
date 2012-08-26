@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{EF315657-E127-40FE-9D13-239CE4CE6642}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Client", "Web.Client\Web.Client.csproj", "{AF3C2B11-7FDE-40A0-9FD5-E8608E89D440}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEF27816-A48E-438A-ACB3-5F3A74700BCF} = {EEF27816-A48E-438A-ACB3-5F3A74700BCF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Host", "Web.Host\Web.Host.csproj", "{EEF27816-A48E-438A-ACB3-5F3A74700BCF}"
 EndProject
