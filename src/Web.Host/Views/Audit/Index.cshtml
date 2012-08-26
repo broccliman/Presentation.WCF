@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Web.Host.Infrastructure.AuditEntry>
+@foreach (var entry in Model)
+{
+    <h3>&nbsp;[@entry.Timestamp] - @entry.Type</h3>
+    <pre>@entry.Message</pre>
+    <br />
+}

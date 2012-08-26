@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Contracts.Authentication.UserResponse>
+           
+@section Head
+{
+    <style type="text/css">
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        
+        .refresh
+        {
+            margin-bottom: 10px;
+        }
+        
+        table, td, th
+        {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid;
+        }
+    </style>
+}
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+
+        $(".refresh").button({
+            icons: { primary: "ui-icon-refresh" }
+        });
+
+        $("#clearAudit").button({
+            icons: { primary: "ui-icon-close" }
+        }).click(function () {
+            document.getElementById('frameAudit').src = "http://localhost:8082/Audit/Clear";
+        });
+
+        $("#refreshAudit").click(function () {
+            document.getElementById('frameAudit').src = document.getElementById('frameAudit').src;
+        });
+
+        $("#refreshElmah").click(function () {
+            document.getElementById('frameElmah').src = document.getElementById('frameElmah').src;
+        });
+
+        $("#username").focus();
+    });
+</script>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Client</a></li>
+        <li><a href="#tabs-2">Audits</a></li>
+        <li><a href="#tabs-3">ELMAH</a></li>
+    </ul>
+    <div id="tabs-1">
+        @Html.ValidationSummary()
+        <h3>
+            User List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        Username
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        # of Logins
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink("Delete", "DeleteUser", new { id = @user.Id })
+                        </td>
+                        <td>@user.Username
+                        </td>
+                        <td>@user.Password
+                        </td>
+                        <td>@user.NumberOfLogins
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <h3>
+            Login</h3>
+        @using (Html.BeginForm("Login", "Home"))
+        {
+            <input type="text" name="username" id="username" placeholder="username" autocomplete="off" /><br />
+            <input type="text" name="password" id="password" placeholder="password" autocomplete="off" /><br />
+            <button type="submit">
+                Submit</button>
+        }
+    </div>
+    <div id="tabs-2">
+        <button id="refreshAudit" class="refresh">
+            Refresh</button>
+        <button id="clearAudit">
+            Clear</button>
+        <iframe id="frameAudit" src="http://localhost:8082/Audit/Index" height="83%" width="100%">
+        </iframe>
+    </div>
+    <div id="tabs-3">
+        <button id="refreshElmah" class="refresh">
+            Refresh</button>
+        <iframe id="frameElmah" src="http://localhost:8082/elmah" height="83%" width="100%">
+        </iframe>
+    </div>
+</div>
