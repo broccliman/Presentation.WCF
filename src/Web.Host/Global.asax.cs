@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Web.Host.Infrastructure;
 
 namespace Web.Host
 {
@@ -10,6 +11,7 @@ namespace Web.Host
         {
             RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             RouteTable.Routes.MapRoute("Default", "{controller}/{action}");
+            Db.Initialize();
         }
     }
 }

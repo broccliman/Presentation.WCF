@@ -27,7 +27,7 @@ namespace Web.Host
                 var response = new AuthenticateResponse();
 
                 using (var tx = new TransactionScope())
-                using (var session = Database.OpenSession())
+                using (var session = Db.OpenSession())
                 {
                     var user = session.Query<User>().FirstOrDefault(x => x.Username == request.Username && x.Password == request.Password);
 

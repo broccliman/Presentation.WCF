@@ -45,7 +45,6 @@
     <Compile Include="Authentication\AuthenticateRequest.cs" />
     <Compile Include="Authentication\AuthenticateResponse.cs" />
     <Compile Include="Authentication\AuthenticationClient.cs" />
-    <Compile Include="Authentication\DeleteUserRequest.cs" />
     <Compile Include="Authentication\GetUsersRequest.cs" />
     <Compile Include="Authentication\GetUsersResponse.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />

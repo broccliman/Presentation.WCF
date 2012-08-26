@@ -28,26 +28,6 @@ namespace Web.Client.Controllers
         }
 
         /// <summary>
-        /// The delete user action.
-        /// </summary>
-        /// <param name="id">The id of the user to delete.</param>
-        /// <returns>Redirect to index view result.</returns>
-        public ActionResult DeleteUser(string id)
-        {
-            try
-            {
-                PortalClient.Execute(new DeleteUserRequest { Id = id });
-            }
-            catch (Exception ex)
-            {
-                TempData.Add("Exception", ex.Message);
-            }
-
-            // Redirect to the index view
-            return RedirectToAction("Index");
-        }
-
-        /// <summary>
         /// The login action.
         /// </summary>
         /// <param name="username">The username.</param>
@@ -70,6 +50,28 @@ namespace Web.Client.Controllers
             {
                 TempData.Add("Authentication", "The username/password did not match any user.");
             }
+
+            // Redirect to the index view
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// The delete user action.
+        /// </summary>
+        /// <param name="id">The id of the user to delete.</param>
+        /// <returns>Redirect to index view result.</returns>
+        public ActionResult DeleteUser(string id)
+        {
+            TempData.Add("Not implemented", "Todo... Delete user has not been implemented.");
+
+            //try
+            //{
+            //    PortalClient.Execute(new DeleteUserRequest { Id = id });
+            //}
+            //catch (Exception ex)
+            //{
+            //    TempData.Add("Exception", ex.Message);
+            //}
 
             // Redirect to the index view
             return RedirectToAction("Index");

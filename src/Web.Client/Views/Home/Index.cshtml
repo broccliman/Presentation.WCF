@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Contracts.Authentication.UserResponse>
-           
 @section Head
 {
     <style type="text/css">
@@ -12,12 +11,10 @@
         
         .refresh
         {
-            margin-bottom: 10px;
         }
         
         table, td, th
         {
-            text-align: left;
             padding: 10px;
             border: 1px solid;
         }
@@ -26,6 +23,8 @@
 <script type="text/javascript">
     $(function () {
         $("#tabs").tabs();
+
+        $("#loginSubmit").button();
 
         $(".refresh").button({
             icons: { primary: "ui-icon-refresh" }
@@ -55,7 +54,19 @@
         <li><a href="#tabs-3">ELMAH</a></li>
     </ul>
     <div id="tabs-1">
-        @Html.ValidationSummary()
+        @{
+            var modelState = ViewData.ModelState;
+
+            if (!modelState.IsValid)
+            {
+            <div class="alert alert-error">
+                @foreach (var error in modelState.SelectMany(x => x.Value.Errors))
+                {
+                    <span>@error.ErrorMessage</span>
+                }
+            </div>
+            }
+        }
         <h3>
             User List</h3>
         <table>
@@ -95,21 +106,20 @@
         {
             <input type="text" name="username" id="username" placeholder="username" autocomplete="off" /><br />
             <input type="text" name="password" id="password" placeholder="password" autocomplete="off" /><br />
-            <button type="submit">
-                Submit</button>
+            <button type="submit" id="loginSubmit">Submit</button>
         }
     </div>
     <div id="tabs-2">
-        <button id="refreshAudit" class="refresh">
-            Refresh</button>
-        <button id="clearAudit">
-            Clear</button>
+        <p>
+            <button id="refreshAudit" class="refresh">
+                Refresh</button>
+            <button id="clearAudit">
+                Clear</button></p>
         <iframe id="frameAudit" src="http://localhost:8082/Audit/Index" height="83%" width="100%">
         </iframe>
     </div>
     <div id="tabs-3">
-        <button id="refreshElmah" class="refresh">
-            Refresh</button>
+        <p><button id="refreshElmah" class="refresh">Refresh</button></p>
         <iframe id="frameElmah" src="http://localhost:8082/elmah" height="83%" width="100%">
         </iframe>
     </div>

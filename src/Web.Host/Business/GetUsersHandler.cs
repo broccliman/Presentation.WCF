@@ -17,7 +17,7 @@ namespace Web.Host.Business
         {
             List<UserResponse> users;
 
-            using (var session = Database.OpenSession())
+            using (var session = Db.OpenSession())
             {
                 users = session
                     .Query<User>()

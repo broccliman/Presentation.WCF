@@ -136,7 +136,7 @@
     </Compile>
     <Compile Include="Infrastructure\AuditStack.cs" />
     <Compile Include="Business\IRequestHandler.cs" />
-    <Compile Include="Infrastructure\Database.cs" />
+    <Compile Include="Infrastructure\Db.cs" />
     <Compile Include="Infrastructure\ElmahLogger.cs" />
     <Compile Include="Portal.svc.cs">
       <DependentUpon>Portal.svc</DependentUpon>
