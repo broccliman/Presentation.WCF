@@ -22,7 +22,7 @@ namespace Contracts.Authentication
         /// The collection of users.
         /// </summary>
         [DataMember]
-        public List<UserResponse> Users { get; private set; }
+        public List<UserResponse> Users { get; set; }
     }
 
     /// <summary>
